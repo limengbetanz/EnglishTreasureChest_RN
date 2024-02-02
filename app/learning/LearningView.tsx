@@ -16,6 +16,19 @@ const topicCardSize = (width - 50) / 3.0;
 const Stack = createStackNavigator();
 
 const LearningView = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="TopicContainer" component={TopicContainer} options={{ headerShown: false }}/>
+            <Stack.Screen name="Desynonymisation" component={DesynonymisationView} />
+            <Stack.Screen name="MyNotebook" component={MyNotebookView} />
+            <Stack.Screen name="OneMinuteGrammar" component={OneMinuteGrammarView} />
+            <Stack.Screen name="PracticalOralEnglish" component={PracticalOralEnglishView} />
+            <Stack.Screen name="SceneDialogues" component={SceneDialoguesView} />
+        </Stack.Navigator>
+    );
+}
+
+const TopicContainer = () => {
     const viewModel = new LearningViewModel();
     
     return (    
@@ -24,8 +37,8 @@ const LearningView = () => {
 
             <FlatList
                 data={viewModel.topics}
-                renderItem={({item}) => <TopicView item={item}/>}
-                keyExtractor={topic => topic.id}
+                renderItem={({item}) => <TopicCard item={item}/>}
+                keyExtractor={topic => topic.screenName}
                 numColumns={3}
                 contentContainerStyle={styles.gridContainer}
                 style={styles.topicsContainer}
@@ -44,11 +57,14 @@ const HeaderView = () => {
     );
 };
 
-const TopicView = ({item}: {item: Topic}) => {
+const TopicCard = ({item}: {item: Topic}) => {
+    const navigation = useNavigation();
     return (
-        <View style={[styles.topicCard, {backgroundColor: item.color}]}>
-            <Text style={styles.topicText}>{item.title}</Text>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate(item.screenName)}>
+            <View style={[styles.topicCard, {backgroundColor: item.color}]}>
+                <Text style={styles.topicText}>{item.title}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
