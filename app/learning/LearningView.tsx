@@ -1,10 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import LearningViewModel, { Topic } from './LearningViewModel';
+import DesynonymisationView from './desynonymisation/DesynonymisationView';
+import MyNotebookView from './my_notebook/MyNotebookView';
+import OneMinuteGrammarView from './one_minute_grammar/OneMinuteGrammarView';
+import PracticalOralEnglishView from './practical_oral_english/PracticalOralEnglishView';
+import SceneDialoguesView from './scene_dialogues/SceneDialoguesView';
 
 const { width } = Dimensions.get('window');
 const topicCardSize = (width - 50) / 3.0; 
+const Stack = createStackNavigator();
 
 const LearningView = () => {
     const viewModel = new LearningViewModel();
@@ -15,7 +24,7 @@ const LearningView = () => {
 
             <FlatList
                 data={viewModel.topics}
-                renderItem={TopicView}
+                renderItem={({item}) => <TopicView item={item}/>}
                 keyExtractor={topic => topic.id}
                 numColumns={3}
                 contentContainerStyle={styles.gridContainer}
