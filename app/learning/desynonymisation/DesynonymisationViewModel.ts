@@ -2,8 +2,10 @@ import DesynonymisationModel from './DesynonymisationModel';
 import Colors from '../../consts/Colors';
 
 class DesynonymisationViewModel {
-    static ThemeColor = Colors.PracticalOralEnglishViewThemeColor;
-    
+    themeColor = Colors.DesynonymisationViewThemeColor;
+    navTitle: string = "同义词辨析";
+    navDescription: string = "一分钟解决困惑";
+
     constructor() {
 
     }
