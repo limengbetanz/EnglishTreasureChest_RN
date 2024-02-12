@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
 import PracticalOralEnglishViewModel from './PracticalOralEnglishViewModel';
 import Colors from '../../consts/Colors';
+import SegmentedControl from '../../shared_views/SegmentedControl';
+import type { SegmentedControlProps } from '../../shared_views/SegmentedControl';
 
 const viewModel = new PracticalOralEnglishViewModel();
 
@@ -24,10 +26,20 @@ const PracticalOralEnglishView = ({navigation}) => {
     });
   }, []);
 
-  return (
-    <View>
-        <Text>PracticalOralEnglishView</Text>
-    </View>
+    const [selectedOption, setSelectedOption] = useState('食物');
+
+    return (
+        <View>
+            <SegmentedControl
+                options={['食物', '生活', '其他']}
+                optionBgColor='white' 
+                selectedOptionBgColor={viewModel.themeColor}
+                optiongFgColor={Colors.primaryText}
+                selectedOptionFgColor='white'
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+            />
+        </View>
   )
 };
 
