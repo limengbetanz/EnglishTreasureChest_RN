@@ -1,73 +1,73 @@
 [
     {
         "id": 0,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you1?",
         "content": "A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
     },
     {
         "id": 1,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you2?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 2,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you3?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 3,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you4?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 4,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you5?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 5,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you6?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 6,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 7,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 8,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 9,
-        "type" : "food",
+        "type" : "食物",
         "title": "How old are you?",
         "content": "Fine thank you and you?"
     },
     {
         "id": 10,
-        "type" : "life",
+        "type" : "生活",
         "title": "Are you ok?",
         "content": "OK 100 percent"
     },
     {
         "id": 11,
-        "type" : "Sport",
+        "type" : "体育",
         "title": "Are you ok?",
         "content": "OK 100 percent"
     }

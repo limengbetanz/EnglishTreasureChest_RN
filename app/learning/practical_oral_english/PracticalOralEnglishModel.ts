@@ -1,29 +1,19 @@
-enum PracticalOralEnglishItemType {
-    Food = '食物',
-    Life = '生活',
-    Sport = '体育',
-    Other = '其他'
-}
-
 type PracticalOralEnglishItem = {
-    type: PracticalOralEnglishItemType
-    title: String
-    content: String
-    id: String
-}
+    type: string;
+    title: string;
+    content: string;
+    id: number;
+};
 
 class PracticalOralEnglishModel {
-    items: PracticalOralEnglishItem[] = [];
-
-    constructor() {
-
-    }
+    constructor() {}
 
     getItems(): PracticalOralEnglishItem[] {
-        return []
+        const jsonData = require("../../../resources/local_data/poeis.json");
+        const items: PracticalOralEnglishItem[] = jsonData;
+        return items;
     }
 }
 
-export { PracticalOralEnglishItemType };
 export type { PracticalOralEnglishItem };
 export default PracticalOralEnglishModel;
