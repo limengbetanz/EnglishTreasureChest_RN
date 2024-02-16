@@ -16,4 +16,5 @@ class PracticalOralEnglishModel {
 }
 
 export type { PracticalOralEnglishItem };
-export default PracticalOralEnglishModel;
+const model = new PracticalOralEnglishModel();
+export default model;

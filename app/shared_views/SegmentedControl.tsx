@@ -1,12 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Observer } from "mobx-react-lite";
 
 type SegmentedControlProps = {
     options: string[];
 
     optionBgColor: string;
-    optiongFgColor: string;
+    optionFgColor: string;
 
     selectedOptionBgColor: string;
     selectedOptionFgColor: string;
@@ -19,41 +18,37 @@ const SegmentedControl = ({
     options,
     optionBgColor,
     selectedOptionBgColor,
-    optiongFgColor,
+    optionFgColor,
     selectedOptionFgColor,
     selectedOption,
     setSelectedOption,
 }: SegmentedControlProps) => {
     return (
-        <Observer>
-            {() => (
-                <View style={styles.container}>
-                    {options.map((option) => (
-                        <TouchableOpacity
-                            key={option}
-                            onPress={() => setSelectedOption(option)}
-                            style={[
-                                styles.option,
-                                selectedOption === option
-                                    ? { backgroundColor: selectedOptionBgColor }
-                                    : { backgroundColor: optionBgColor },
-                            ]}
-                        >
-                            <Text
-                                style={[
-                                    styles.label,
-                                    selectedOption === option
-                                        ? { color: selectedOptionFgColor }
-                                        : { color: optiongFgColor },
-                                ]}
-                            >
-                                {option}
-                            </Text>
-                        </TouchableOpacity>
-                    ))}
-                </View>
-            )}
-        </Observer>
+        <View style={styles.container}>
+            {options.map((option) => (
+                <TouchableOpacity
+                    key={option}
+                    onPress={() => setSelectedOption(option)}
+                    style={[
+                        styles.option,
+                        selectedOption === option
+                            ? { backgroundColor: selectedOptionBgColor }
+                            : { backgroundColor: optionBgColor },
+                    ]}
+                >
+                    <Text
+                        style={[
+                            styles.label,
+                            selectedOption === option
+                                ? { color: selectedOptionFgColor }
+                                : { color: optionFgColor },
+                        ]}
+                    >
+                        {option}
+                    </Text>
+                </TouchableOpacity>
+            ))}
+        </View>
     );
 };
 

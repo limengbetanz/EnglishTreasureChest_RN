@@ -1,5 +1,5 @@
-import { observable, action } from "mobx";
-import PracticalOralEnglishModel from "./PracticalOralEnglishModel";
+import { makeObservable, observable, action } from "mobx";
+import model from "./PracticalOralEnglishModel";
 import Colors from "../../consts/Colors";
 import type { PracticalOralEnglishItem } from "./PracticalOralEnglishModel";
 
@@ -10,18 +10,25 @@ class PracticalOralEnglishViewModel {
 
     allItems: Record<string, PracticalOralEnglishItem[]> = {};
 
-    @observable displayedItems: PracticalOralEnglishItem[] = [];
-    @observable searchedItems: PracticalOralEnglishItem[] = [];
-    @observable options: string[] = [];
-    @observable selectedOption: string = "";
+    displayedItems: PracticalOralEnglishItem[] = [];
+    searchedItems: PracticalOralEnglishItem[] = [];
+    options: string[] = [];
+    selectedOption: string = "";
 
     constructor() {
         console.log("PracticalOralEnglishViewModel constructor");
+
+        makeObservable(this, {
+            displayedItems: observable,
+            searchedItems: observable,
+            options: observable,
+            selectedOption: observable,
+            getItems: action,
+            selectOption: action,
+        });
     }
 
-    @action
     getItems() {
-        const model = new PracticalOralEnglishModel();
         const items = model.getItems();
 
         this.allItems = {};
@@ -41,10 +48,10 @@ class PracticalOralEnglishViewModel {
         }
     }
 
-    @action
-    selectOption(selectedOption: string) {
-        this.selectedOption = selectedOption;
-    }
+    selectOption = (option: string) => {
+        this.selectedOption = option;
+    };
 }
 
-export default PracticalOralEnglishViewModel;
+const viewModel = new PracticalOralEnglishViewModel();
+export default viewModel;

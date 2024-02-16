@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
-import { Observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 
-import PracticalOralEnglishViewModel from "./PracticalOralEnglishViewModel";
+import viewModel from "./PracticalOralEnglishViewModel";
 import Colors from "../../consts/Colors";
 import SegmentedControl from "../../shared_views/SegmentedControl";
-
-const viewModel = new PracticalOralEnglishViewModel();
 
 const PracticalOralEnglishView = ({ navigation }) => {
     useEffect(() => {
@@ -15,6 +13,7 @@ const PracticalOralEnglishView = ({ navigation }) => {
             headerStyle: {
                 backgroundColor: "white",
             },
+            headerShadowVisible: false,
             headerTintColor: viewModel.themeColor,
             headerTitleStyle: {
                 fontWeight: "normal",
@@ -31,25 +30,26 @@ const PracticalOralEnglishView = ({ navigation }) => {
 
     return (
         <View>
-            <Observer>
-                {() => (
-                    <View>
-                        <SegmentedControl
-                            options={viewModel.options}
-                            optionBgColor="white"
-                            selectedOptionBgColor={viewModel.themeColor}
-                            optiongFgColor={Colors.primaryText}
-                            selectedOptionFgColor="white"
-                            selectedOption={viewModel.selectedOption}
-                            setSelectedOption={viewModel.selectOption}
-                        />
-                        <Text>{viewModel.options}</Text>
-                    </View>
-                )}
-            </Observer>
+            <SegmentedControlView />
         </View>
     );
 };
+
+const SegmentedControlView = observer(() => {
+    return (
+        <View>
+            <SegmentedControl
+                options={viewModel.options}
+                optionBgColor="white"
+                selectedOptionBgColor={viewModel.themeColor}
+                optionFgColor={Colors.primaryText}
+                selectedOptionFgColor="white"
+                selectedOption={viewModel.selectedOption}
+                setSelectedOption={viewModel.selectOption}
+            />
+        </View>
+    );
+});
 
 const NavLeadingItemView = ({ navigation }) => {
     const handlePop = () => {
