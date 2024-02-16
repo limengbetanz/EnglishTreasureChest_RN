@@ -1,8 +1,5 @@
 class OneMinuteGrammarModel {
-
-    constructor() {
-
-    }
+    constructor() {}
 }
 
 export default OneMinuteGrammarModel;

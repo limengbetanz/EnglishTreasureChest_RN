@@ -1,8 +1,5 @@
 class MyNotebookModel {
-
-    constructor() {
-
-    }
+    constructor() {}
 }
 
 export default MyNotebookModel;

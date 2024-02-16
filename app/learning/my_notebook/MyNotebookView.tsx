@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { SimpleLineIcons, AntDesign } from "@expo/vector-icons";
 
 import MyNotebookViewModel from "./MyNotebookViewModel";

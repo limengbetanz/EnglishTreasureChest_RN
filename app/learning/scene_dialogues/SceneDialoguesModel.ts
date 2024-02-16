@@ -1,8 +1,5 @@
 class SceneDialoguesModel {
-
-    constructor() {
-
-    }
+    constructor() {}
 }
 
 export default SceneDialoguesModel;
