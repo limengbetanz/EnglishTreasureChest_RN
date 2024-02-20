@@ -7,6 +7,9 @@ class Colors {
 
     static primaryText = "#4A4A4A";
     static secondoryText = "grey";
+
+    static divider = "lightgrey";
+    static viewBackground = "ghostwhite";
 }
 
-export default Colors
+export default Colors;

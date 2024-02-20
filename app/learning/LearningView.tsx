@@ -17,6 +17,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LearningViewModel, { TopicType } from "./LearningViewModel";
 import type { Topic } from "./LearningViewModel";
 
+import Colors from "../consts/Colors";
+
 import DesynonymisationView from "./desynonymisation/DesynonymisationView";
 import MyNotebookView from "./my_notebook/MyNotebookView";
 import OneMinuteGrammarView from "./one_minute_grammar/OneMinuteGrammarView";
@@ -94,7 +96,10 @@ const TopicCard = ({ item }: { item: Topic }) => {
     const navigation = useNavigation();
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(item.type)}>
+        <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => navigation.navigate(item.type)}
+        >
             <View
                 style={[styles.topicCard, { backgroundColor: item.themeColor }]}
             >
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
 
     topicsContainer: {
         flex: 1,
-        backgroundColor: "ghostwhite",
+        backgroundColor: Colors.viewBackground,
     },
 
     topicCard: {

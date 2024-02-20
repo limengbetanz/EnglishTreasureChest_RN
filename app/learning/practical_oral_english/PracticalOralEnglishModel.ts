@@ -2,7 +2,7 @@ type PracticalOralEnglishItem = {
     type: string;
     title: string;
     content: string;
-    id: number;
+    id: string;
 };
 
 class PracticalOralEnglishModel {

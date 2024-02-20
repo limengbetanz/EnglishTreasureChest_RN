@@ -44,14 +44,16 @@ class PracticalOralEnglishViewModel {
         this.options = Object.keys(this.allItems);
 
         if (items.length > 0) {
-            this.selectedOption = items[0].type;
+            this.selectOption(items[0].type);
         }
     }
 
     selectOption = (option: string) => {
         this.selectedOption = option;
+        this.displayedItems = this.allItems[option];
     };
 }
 
 const viewModel = new PracticalOralEnglishViewModel();
 export default viewModel;
+export type { PracticalOralEnglishItem };

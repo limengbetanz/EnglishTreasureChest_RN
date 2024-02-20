@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    FlatList,
+} from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { observer } from "mobx-react";
 
 import viewModel from "./PracticalOralEnglishViewModel";
+import type { PracticalOralEnglishItem } from "./PracticalOralEnglishViewModel";
 import Colors from "../../consts/Colors";
 import SegmentedControl from "../../shared_views/SegmentedControl";
+import CollapsibleCard from "../../shared_views/CollapsibleCard";
 
 const PracticalOralEnglishView = ({ navigation }) => {
     useEffect(() => {
@@ -29,8 +37,9 @@ const PracticalOralEnglishView = ({ navigation }) => {
     }, [viewModel.allItems]);
 
     return (
-        <View>
+        <View style={styles.parent}>
             <SegmentedControlView />
+            <ItemList />
         </View>
     );
 };
@@ -102,7 +111,42 @@ const NavTrailingItemView = () => {
     );
 };
 
+const PracticalOralEnglishItemView = ({
+    item,
+}: {
+    item: PracticalOralEnglishItem;
+}) => {
+    return (
+        <CollapsibleCard
+            title={item.title}
+            content={item.content}
+            themeColor={viewModel.themeColor}
+        />
+    );
+};
+
+const ItemList = observer(() => {
+    return (
+        <View style={styles.flatListContainer}>
+            <FlatList
+                data={viewModel.displayedItems}
+                renderItem={({ item }) => (
+                    <PracticalOralEnglishItemView item={item} />
+                )}
+                keyExtractor={(item) => item.id.toString()}
+                contentContainerStyle={styles.flatListItem}
+                style={styles.flatList}
+            />
+        </View>
+    );
+});
+
 const styles = StyleSheet.create({
+    parent: {
+        flex: 1,
+        backgroundColor: Colors.viewBackground,
+    },
+
     navMiddleItemContainer: {
         flexDirection: "column",
         backgroundColor: "white",
@@ -136,6 +180,18 @@ const styles = StyleSheet.create({
 
     navTrailingButton: {
         paddingRight: 15,
+    },
+
+    flatListContainer: {
+        paddingBottom: 40,
+    },
+
+    flatList: {
+        backgroundColor: Colors.viewBackground,
+    },
+
+    flatListItem: {
+        padding: 10,
     },
 });
 
