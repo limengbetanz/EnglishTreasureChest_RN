@@ -14,17 +14,20 @@ class PracticalOralEnglishViewModel {
     searchedItems: PracticalOralEnglishItem[] = [];
     options: string[] = [];
     selectedOption: string = "";
+    searchViewPresented = false;
 
     constructor() {
-        console.log("PracticalOralEnglishViewModel constructor");
-
         makeObservable(this, {
             displayedItems: observable,
             searchedItems: observable,
             options: observable,
             selectedOption: observable,
+            searchViewPresented: observable,
             getItems: action,
             selectOption: action,
+            showSearchView: action,
+            searchItems: action,
+            restSearchedItems: action,
         });
     }
 
@@ -52,6 +55,30 @@ class PracticalOralEnglishViewModel {
         this.selectedOption = option;
         this.displayedItems = this.allItems[option];
     };
+
+    showSearchView = (show: boolean) => {
+        this.searchViewPresented = show;
+    };
+
+    searchItems = (keyword: string) => {
+        const result: PracticalOralEnglishItem[] = [];
+        const k = keyword.toLowerCase();
+
+        Object.entries(this.allItems).forEach(([key, value]) => {
+            const matchedItems = value.filter(
+                (item) =>
+                    item.title.toLowerCase().includes(k) ||
+                    item.content.toLowerCase().includes(k),
+            );
+            result.push(...matchedItems);
+        });
+
+        this.searchedItems = result;
+    };
+
+    restSearchedItems() {
+        this.searchedItems = [];
+    }
 }
 
 const viewModel = new PracticalOralEnglishViewModel();

@@ -5,15 +5,16 @@ import {
     View,
     TouchableOpacity,
     FlatList,
+    Modal,
 } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { observer } from "mobx-react";
 
 import viewModel from "./PracticalOralEnglishViewModel";
-import type { PracticalOralEnglishItem } from "./PracticalOralEnglishViewModel";
+import SearchView from "./PracticalOralEnglishItemSearchView";
 import Colors from "../../consts/Colors";
 import SegmentedControl from "../../shared_views/SegmentedControl";
-import CollapsibleCard from "../../shared_views/CollapsibleCard";
+import PracticalOralEnglishItemView from "./PracticalOralEnglishItemView";
 
 const PracticalOralEnglishView = ({ navigation }) => {
     useEffect(() => {
@@ -36,10 +37,26 @@ const PracticalOralEnglishView = ({ navigation }) => {
         viewModel.getItems();
     }, [viewModel.allItems]);
 
+    const ModalSearchView = observer(() => {
+        return (
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={viewModel.searchViewPresented}
+                onRequestClose={() => {
+                    viewModel.showSearchView(false);
+                }}
+            >
+                <SearchView />
+            </Modal>
+        );
+    });
+
     return (
         <View style={styles.parent}>
             <SegmentedControlView />
             <ItemList />
+            <ModalSearchView />
         </View>
     );
 };
@@ -95,11 +112,13 @@ const NavMiddleItemView = () => {
 };
 
 const NavTrailingItemView = () => {
-    const onBackButtonTapped = () => {};
+    const onSearchButtonTapped = () => {
+        viewModel.showSearchView(true);
+    };
 
     return (
         <TouchableOpacity
-            onPress={onBackButtonTapped}
+            onPress={onSearchButtonTapped}
             style={styles.navTrailingButton}
         >
             <SimpleLineIcons
@@ -108,20 +127,6 @@ const NavTrailingItemView = () => {
                 color={viewModel.themeColor}
             />
         </TouchableOpacity>
-    );
-};
-
-const PracticalOralEnglishItemView = ({
-    item,
-}: {
-    item: PracticalOralEnglishItem;
-}) => {
-    return (
-        <CollapsibleCard
-            title={item.title}
-            content={item.content}
-            themeColor={viewModel.themeColor}
-        />
     );
 };
 

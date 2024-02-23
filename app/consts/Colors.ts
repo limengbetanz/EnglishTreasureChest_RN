@@ -10,6 +10,7 @@ class Colors {
 
     static divider = "lightgrey";
     static viewBackground = "ghostwhite";
+    static border = "lightgrey";
 }
 
 export default Colors;
