@@ -64,7 +64,11 @@ const PracticalOralEnglishItemSearchView = () => {
                     <FlatList
                         data={viewModel.searchedItems}
                         renderItem={({ item }) => (
-                            <PracticalOralEnglishItemView item={item} />
+                            <PracticalOralEnglishItemView
+                                item={item}
+                                expandedInitially={true}
+                                highlightedText={viewModel.searchKeyword}
+                            />
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         contentContainerStyle={styles.flatListItem}

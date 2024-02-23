@@ -7,6 +7,7 @@ class Colors {
 
     static primaryText = "#4A4A4A";
     static secondoryText = "grey";
+    static highlightedText = "yellow";
 
     static divider = "lightgrey";
     static viewBackground = "ghostwhite";

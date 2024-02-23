@@ -5,23 +5,27 @@ import {
     TouchableOpacity,
     StyleSheet,
     Platform,
-    Animated,
 } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import Colors from "../consts/Colors";
+import HighlightableText from "./HighlightableText";
 
 type CollapsibleCardInfo = {
     title: string;
     content: string;
     themeColor: string;
+    expandedInitially: boolean;
+    highlightedText?: string;
 };
 
 const CollapsibleCard = ({
     title,
     content,
     themeColor,
+    expandedInitially,
+    highlightedText,
 }: CollapsibleCardInfo) => {
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(expandedInitially);
 
     const toggleExpand = () => {
         setExpanded(!expanded);
@@ -36,7 +40,21 @@ const CollapsibleCard = ({
     };
 
     const ContentText = ({ content }) => {
-        return <Text style={styles.content}>{content}</Text>;
+        return highlightedText === "undefined" ? (
+            <Text style={styles.content}>{content}</Text>
+        ) : (
+            <View style={styles.content}>
+                <HighlightableText
+                    text={content}
+                    textStyles={styles.content}
+                    highlightedText={highlightedText}
+                    highlightedTextStyles={[
+                        styles.content,
+                        styles.highlightableText,
+                    ]}
+                />
+            </View>
+        );
     };
 
     return (
@@ -46,7 +64,20 @@ const CollapsibleCard = ({
                 onPress={() => toggleExpand()}
                 style={styles.header}
             >
-                <Text style={styles.title}>{title}</Text>
+                {highlightedText === "undefined" ? (
+                    <Text style={styles.title}>{title}</Text>
+                ) : (
+                    <HighlightableText
+                        text={title}
+                        textStyles={styles.title}
+                        highlightedText={highlightedText}
+                        highlightedTextStyles={[
+                            styles.title,
+                            styles.highlightableText,
+                        ]}
+                    />
+                )}
+
                 {expanded ? (
                     <SimpleLineIcons
                         name="arrow-up"
@@ -107,6 +138,9 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         color: Colors.secondoryText,
         fontSize: 14,
+    },
+    highlightableText: {
+        backgroundColor: Colors.highlightedText,
     },
 });
 

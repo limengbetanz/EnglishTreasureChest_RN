@@ -7,6 +7,7 @@ class PracticalOralEnglishViewModel {
     readonly themeColor = Colors.PracticalOralEnglishViewThemeColor;
     readonly navTitle: string = "实用口语";
     readonly navDescription: string = "地道英语脱口而出";
+    searchKeyword = "";
 
     allItems: Record<string, PracticalOralEnglishItem[]> = {};
 
@@ -61,6 +62,7 @@ class PracticalOralEnglishViewModel {
     };
 
     searchItems = (keyword: string) => {
+        this.searchKeyword = keyword;
         const result: PracticalOralEnglishItem[] = [];
         const k = keyword.toLowerCase();
 
@@ -73,10 +75,12 @@ class PracticalOralEnglishViewModel {
             result.push(...matchedItems);
         });
 
-        this.searchedItems = result;
+        const maxCount = result.length > 10 ? 10 : result.length;
+        this.searchedItems = result.slice(0, maxCount);
     };
 
     restSearchedItems() {
+        this.searchKeyword = "";
         this.searchedItems = [];
     }
 }

@@ -136,7 +136,10 @@ const ItemList = observer(() => {
             <FlatList
                 data={viewModel.displayedItems}
                 renderItem={({ item }) => (
-                    <PracticalOralEnglishItemView item={item} />
+                    <PracticalOralEnglishItemView
+                        item={item}
+                        expandedInitially={false}
+                    />
                 )}
                 keyExtractor={(item) => item.id.toString()}
                 contentContainerStyle={styles.flatListItem}
