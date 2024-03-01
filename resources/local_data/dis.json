@@ -1,32 +1,20 @@
 [
     {
-      "id": 0,
-      "synonyms": [
-        "refuse",
-        "reject",
-        "decline"
-      ],
-      "meanings": [
-        "refuse meaning refuse meaning refuse meaning refuse meaning refuse meaning",
-        "reject meaning",
-        "decline meaning"
-      ],
-      "title": "这些拒绝动词 'refuse', 'reject', 'decline' 一样吗?",
-      "description": "A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
+        "id": "0",
+        "synonyms": ["refuse", "reject", "decline"],
+        "meanings": [
+            "refuse meaning refuse meaning refuse meaning refuse meaning refuse meaning",
+            "reject meaning",
+            "decline meaning"
+        ],
+        "title": "这些拒绝动词 'refuse', 'reject', 'decline' 一样吗?",
+        "description": "A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
     },
     {
-      "id": 2,
-      "synonyms": [
-        "drink",
-        "beverage",
-        "refrehing"
-      ],
-      "meanings": [
-        "drink meaning",
-        "beverage meaning",
-        "refrehing meaning"
-      ],
-      "title": "喝饮料用哪个 'drink', 'beverage', 'refrehing'?",
-      "description": "A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
+        "id": "1",
+        "synonyms": ["drink", "beverage", "refrehing"],
+        "meanings": ["drink meaning", "beverage meaning", "refrehing meaning"],
+        "title": "喝饮料用哪个 'drink', 'beverage', 'refrehing'?",
+        "description": "A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
     }
-  ]
+]

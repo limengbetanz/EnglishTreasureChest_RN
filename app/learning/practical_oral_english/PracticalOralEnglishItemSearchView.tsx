@@ -85,8 +85,10 @@ const PracticalOralEnglishItemSearchView = () => {
 
     return (
         <SafeAreaView style={styles.parent}>
-            <HeaderView />
-            <ItemList />
+            <View style={styles.contentContainer}>
+                <HeaderView />
+                <ItemList />
+            </View>
         </SafeAreaView>
     );
 };
@@ -127,6 +129,11 @@ const styles = StyleSheet.create({
     searchButton: {
         fontSize: 16,
         color: viewModel.themeColor,
+    },
+
+    contentContainer: {
+        flex: 1,
+        backgroundColor: Colors.viewBackground,
     },
 
     flatListContainer: {

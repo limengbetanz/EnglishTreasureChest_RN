@@ -1,11 +1,18 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    FlatList,
+    Modal,
+} from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { observer } from "mobx-react";
 
-import DesynonymisationViewModel from "./DesynonymisationViewModel";
+import viewModel from "./DesynonymisationViewModel";
 import Colors from "../../consts/Colors";
-
-const viewModel = new DesynonymisationViewModel();
+import DesynonymisationItemView from "./DesynonymisationItemView";
 
 const DesynonymisationView = ({ navigation }) => {
     useEffect(() => {
@@ -24,9 +31,32 @@ const DesynonymisationView = ({ navigation }) => {
         });
     }, []);
 
+    useEffect(() => {
+        viewModel.getItems();
+    }, [viewModel.allItems]);
+
+    const ItemList = observer(() => {
+        return (
+            <View style={styles.flatListContainer}>
+                <FlatList
+                    data={viewModel.allItems}
+                    renderItem={({ item }) => (
+                        <DesynonymisationItemView
+                            item={item}
+                            expandedInitially={false}
+                        />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                    contentContainerStyle={styles.flatListItem}
+                    style={styles.flatList}
+                />
+            </View>
+        );
+    });
+
     return (
-        <View>
-            <Text>DesynonymisationView</Text>
+        <View style={styles.parent}>
+            <ItemList />
         </View>
     );
 };
@@ -83,6 +113,11 @@ const NavTrailingItemView = () => {
 };
 
 const styles = StyleSheet.create({
+    parent: {
+        flex: 1,
+        backgroundColor: Colors.viewBackground,
+    },
+
     navMiddleItemContainer: {
         flexDirection: "column",
         backgroundColor: "white",
@@ -116,6 +151,18 @@ const styles = StyleSheet.create({
 
     navTrailingButton: {
         paddingRight: 15,
+    },
+
+    flatListContainer: {
+        paddingBottom: 40,
+    },
+
+    flatList: {
+        backgroundColor: Colors.viewBackground,
+    },
+
+    flatListItem: {
+        padding: 10,
     },
 });
 
