@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleProp, ViewStyle } from "react-native";
+import { Text, StyleProp, ViewStyle } from "react-native";
 
 type HighlightableTextInfo = {
     text: string;

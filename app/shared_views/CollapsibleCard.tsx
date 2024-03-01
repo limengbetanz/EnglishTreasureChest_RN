@@ -1,29 +1,20 @@
-import React, { useState } from "react";
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    StyleSheet,
-    Platform,
-} from "react-native";
+import React, { useState, ReactNode } from "react";
+import { View, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import Colors from "../consts/Colors";
-import HighlightableText from "./HighlightableText";
 
 type CollapsibleCardInfo = {
-    title: string;
-    content: string;
     themeColor: string;
     expandedInitially: boolean;
-    highlightedText?: string;
+    titleView: ReactNode;
+    contentView: ReactNode;
 };
 
 const CollapsibleCard = ({
-    title,
-    content,
     themeColor,
     expandedInitially,
-    highlightedText,
+    titleView,
+    contentView,
 }: CollapsibleCardInfo) => {
     const [expanded, setExpanded] = useState(expandedInitially);
 
@@ -39,24 +30,6 @@ const CollapsibleCard = ({
         );
     };
 
-    const ContentText = ({ content }) => {
-        return highlightedText === "undefined" ? (
-            <Text style={styles.content}>{content}</Text>
-        ) : (
-            <View style={styles.content}>
-                <HighlightableText
-                    text={content}
-                    textStyles={styles.content}
-                    highlightedText={highlightedText}
-                    highlightedTextStyles={[
-                        styles.content,
-                        styles.highlightableText,
-                    ]}
-                />
-            </View>
-        );
-    };
-
     return (
         <View style={[styles.container, styles.shadow]}>
             <TouchableOpacity
@@ -64,19 +37,7 @@ const CollapsibleCard = ({
                 onPress={() => toggleExpand()}
                 style={styles.header}
             >
-                {highlightedText === "undefined" ? (
-                    <Text style={styles.title}>{title}</Text>
-                ) : (
-                    <HighlightableText
-                        text={title}
-                        textStyles={styles.title}
-                        highlightedText={highlightedText}
-                        highlightedTextStyles={[
-                            styles.title,
-                            styles.highlightableText,
-                        ]}
-                    />
-                )}
+                {titleView}
 
                 {expanded ? (
                     <SimpleLineIcons
@@ -93,7 +54,7 @@ const CollapsibleCard = ({
                 )}
             </TouchableOpacity>
             {expanded && <Divider />}
-            {expanded && <ContentText content={content} />}
+            {expanded && <View>{contentView}</View>}
         </View>
     );
 };
