@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React from "react";
+import { Text, View, StyleSheet, TextStyle } from "react-native";
 
 import viewModel from "./PracticalOralEnglishViewModel";
 import CollapsibleCard from "../../shared_views/CollapsibleCard";
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
         fontWeight: "normal",
         fontSize: 16,
         color: Colors.primaryText,
-    },
+    } as TextStyle,
+
     content: {
         paddingHorizontal: 15,
         paddingVertical: 12,
