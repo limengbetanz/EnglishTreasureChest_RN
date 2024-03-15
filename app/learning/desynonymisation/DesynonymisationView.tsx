@@ -13,6 +13,7 @@ import { observer } from "mobx-react";
 import viewModel from "./DesynonymisationViewModel";
 import Colors from "../../consts/Colors";
 import DesynonymisationItemView from "./DesynonymisationItemView";
+import SearchView from "./DesynonymisationSearchView";
 
 const DesynonymisationView = ({ navigation }) => {
     useEffect(() => {
@@ -34,6 +35,21 @@ const DesynonymisationView = ({ navigation }) => {
     useEffect(() => {
         viewModel.getItems();
     }, [viewModel.allItems]);
+
+    const ModalSearchView = observer(() => {
+        return (
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={viewModel.searchViewPresented}
+                onRequestClose={() => {
+                    viewModel.showSearchView(false);
+                }}
+            >
+                <SearchView />
+            </Modal>
+        );
+    });
 
     const ItemList = observer(() => {
         return (
@@ -57,6 +73,7 @@ const DesynonymisationView = ({ navigation }) => {
     return (
         <View style={styles.parent}>
             <ItemList />
+            <ModalSearchView />
         </View>
     );
 };
@@ -96,11 +113,13 @@ const NavMiddleItemView = () => {
 };
 
 const NavTrailingItemView = () => {
-    const onBackButtonTapped = () => {};
+    const onSearchButtonTapped = () => {
+        viewModel.showSearchView(true);
+    };
 
     return (
         <TouchableOpacity
-            onPress={onBackButtonTapped}
+            onPress={onSearchButtonTapped}
             style={styles.navTrailingButton}
         >
             <SimpleLineIcons

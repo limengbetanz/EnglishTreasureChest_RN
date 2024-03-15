@@ -16,5 +16,38 @@
         "meanings": ["drink meaning", "beverage meaning", "refrehing meaning"],
         "title": "喝饮料用哪个 'drink', 'beverage', 'refrehing'?",
         "description": "A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
+    },
+    {
+        "id": "2",
+        "synonyms": ["drink2", "beverage2", "refrehing2"],
+        "meanings": [
+            "drink meaning2",
+            "beverage meaning2",
+            "refrehing meaning2"
+        ],
+        "title": "2喝饮料用哪个 'drink', 'beverage', 'refrehing'?",
+        "description": "2A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
+    },
+    {
+        "id": "3",
+        "synonyms": ["drink3", "beverage3", "refrehing3"],
+        "meanings": [
+            "drink meaning3",
+            "beverage meaning3",
+            "refrehing meaning3"
+        ],
+        "title": "3喝饮料用哪个 'drink', 'beverage', 'refrehing'?",
+        "description": "3A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
+    },
+    {
+        "id": "4",
+        "synonyms": ["drink4", "beverage4", "refrehing4"],
+        "meanings": [
+            "drink meaning4",
+            "beverage meaning4",
+            "refrehing meaning4"
+        ],
+        "title": "4喝饮料用哪个 'drink', 'beverage', 'refrehing'?",
+        "description": "4A scheme to deter antisocial behaviour on Dunedin buses and at the bus hub will need $126,000 of unbudgeted money from the Otago Regional Council to make it last to mid-2024."
     }
 ]

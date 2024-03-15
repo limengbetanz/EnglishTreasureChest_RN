@@ -33,7 +33,21 @@ class DesynonymisationViewModel {
         this.searchViewPresented = show;
     };
 
-    searchItems = (keyword: string) => {};
+    searchItems = (keyword: string) => {
+        this.searchKeyword = keyword;
+        const k = keyword.toLowerCase();
+
+        const matchedItems = this.allItems.filter(
+            (item) =>
+                item.title.toLowerCase().includes(k) ||
+                item.description.toLowerCase().includes(k) ||
+                item.meanings.join("").toLowerCase().includes(k) ||
+                item.synonyms.join("").toLowerCase().includes(k),
+        );
+
+        const maxCount = matchedItems.length > 10 ? 10 : matchedItems.length;
+        this.searchedItems = matchedItems.slice(0, maxCount);
+    };
 
     restSearchedItems() {
         this.searchKeyword = "";
