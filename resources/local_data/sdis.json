@@ -1,78 +1,68 @@
 [
     {
-      "type": "travel",
-      "id": 0,
-      "title": "如何买机票？",
-      "roleA": "乘客",
-      "roleB": "售票员",
-      "roleADialgues": [
-        "How to buy a ticket?How to buy a ticket?How to buy a ticket?How to buy a ticket?",
-        "How much for it?",
-        "Thank you."
-      ],
-      "roleBDialgues": [
-        "Where are you going to go?Where are you going to go?Where are you going to go?Where are you going to go?",
-        "100 yuan",
-        "No worries"
-      ]
+        "type": "旅行",
+        "id": "0",
+        "title": "如何买机票？",
+        "roleA": "乘客",
+        "roleB": "售票员",
+        "roleADialgues": [
+            "How to buy a ticket?How to buy a ticket?How to buy a ticket?How to buy a ticket?",
+            "How much for it?",
+            "Thank you."
+        ],
+        "roleBDialgues": [
+            "Where are you going to go?Where are you going to go?Where are you going to go?Where are you going to go?",
+            "100 yuan",
+            "No worries"
+        ]
     },
     {
-      "type": "travel",
-      "id": 5,
-      "title": "如何买机票？",
-      "roleA": "乘客",
-      "roleB": "售票员",
-      "roleADialgues": [
-        "How to buy a ticket?",
-        "How much for it?",
-        "Thank you."
-      ],
-      "roleBDialgues": [
-        "Where are you going to go?",
-        "100 yuan",
-        "No worries"
-      ]
+        "type": "旅行",
+        "id": "5",
+        "title": "如何买机票？",
+        "roleA": "乘客",
+        "roleB": "售票员",
+        "roleADialgues": [
+            "How to buy a ticket?",
+            "How much for it?",
+            "Thank you."
+        ],
+        "roleBDialgues": [
+            "Where are you going to go?",
+            "100 yuan",
+            "No worries"
+        ]
     },
     {
-      "type": "life",
-      "id": 1,
-      "title": "如何打招呼？",
-      "roleA": "我",
-      "roleB": "邻居",
-      "roleADialgues": [
-        "How are you?",
-        "I am doing well",
-      ],
-      "roleBDialgues": [
-        "Fine. Thank you. And you?",
-      ]
+        "type": "生活",
+        "id": "1",
+        "title": "如何打招呼？",
+        "roleA": "我",
+        "roleB": "邻居",
+        "roleADialgues": ["How are you?", "I am doing well"],
+        "roleBDialgues": ["Fine. Thank you. And you?"]
     },
     {
-      "type": "bus",
-      "id": 2,
-      "title": "如何去加油？",
-      "roleA": "我",
-      "roleB": "服务员",
-      "roleADialgues": [
-        "95 gas, 40 liters.",
-        "That's all"
-      ],
-      "roleBDialgues": [
-        "Sure. Anything else?"
-      ]
+        "type": "交通",
+        "id": "2",
+        "title": "如何去加油？",
+        "roleA": "我",
+        "roleB": "服务员",
+        "roleADialgues": ["95 gas, 40 liters.", "That's all"],
+        "roleBDialgues": ["Sure. Anything else?"]
     },
     {
-      "type": "other",
-      "id": 3,
-      "title": "如何去加油？",
-      "roleA": "我",
-      "roleB": "服务员",
-      "roleADialgues": [
-        "95 gas, 40 liters.95 gas, 40 liters.95 gas, 40 liters.95 gas, 40 liters.95 gas, 40 liters.",
-        "That's all"
-      ],
-      "roleBDialgues": [
-        "Sure. Anything else?Sure. Anything else?Sure. Anything else?Sure. Anything else?Sure. Anything else?Sure. Anything else?"
-      ]
-    },
-  ]
+        "type": "其他",
+        "id": "3",
+        "title": "如何去加油？",
+        "roleA": "我",
+        "roleB": "服务员",
+        "roleADialgues": [
+            "95 gas, 40 liters.95 gas, 40 liters.95 gas, 40 liters.95 gas, 40 liters.95 gas, 40 liters.",
+            "That's all"
+        ],
+        "roleBDialgues": [
+            "Sure. Anything else?Sure. Anything else?Sure. Anything else?Sure. Anything else?Sure. Anything else?Sure. Anything else?"
+        ]
+    }
+]

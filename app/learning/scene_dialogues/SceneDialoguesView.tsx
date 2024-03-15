@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    FlatList,
+    Modal,
+} from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { observer } from "mobx-react";
 
-import SceneDialoguesViewModel from "./SceneDialoguesViewModel";
+import viewModel from "./SceneDialoguesViewModel";
+import SearchView from "./SceneDialoguesSearchView";
 import Colors from "../../consts/Colors";
-
-const viewModel = new SceneDialoguesViewModel();
+import SegmentedControl from "../../shared_views/SegmentedControl";
+import SceneDialoguesViewItemView from "./SceneDialoguesViewItemView";
 
 const SceneDialoguesView = ({ navigation }) => {
     useEffect(() => {
@@ -24,9 +33,65 @@ const SceneDialoguesView = ({ navigation }) => {
         });
     }, []);
 
+    useEffect(() => {
+        viewModel.getItems();
+    }, [viewModel.allItems]);
+
+    const SegmentedControlView = observer(() => {
+        return (
+            <View>
+                <SegmentedControl
+                    options={viewModel.options}
+                    optionBgColor="white"
+                    selectedOptionBgColor={viewModel.themeColor}
+                    optionFgColor={Colors.primaryText}
+                    selectedOptionFgColor="white"
+                    selectedOption={viewModel.selectedOption}
+                    setSelectedOption={viewModel.selectOption}
+                />
+            </View>
+        );
+    });
+
+    const ModalSearchView = observer(() => {
+        return (
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={viewModel.searchViewPresented}
+                onRequestClose={() => {
+                    viewModel.showSearchView(false);
+                }}
+            >
+                <SearchView />
+            </Modal>
+        );
+    });
+
+    const ItemList = observer(() => {
+        return (
+            <View style={styles.flatListContainer}>
+                <FlatList
+                    data={viewModel.displayedItems}
+                    renderItem={({ item }) => (
+                        <SceneDialoguesViewItemView
+                            item={item}
+                            expandedInitially={false}
+                        />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                    contentContainerStyle={styles.flatListItem}
+                    style={styles.flatList}
+                />
+            </View>
+        );
+    });
+
     return (
-        <View>
-            <Text>SceneDialoguesView</Text>
+        <View style={styles.parent}>
+            <SegmentedControlView />
+            <ItemList />
+            <ModalSearchView />
         </View>
     );
 };
@@ -66,11 +131,13 @@ const NavMiddleItemView = () => {
 };
 
 const NavTrailingItemView = () => {
-    const onBackButtonTapped = () => {};
+    const onSearchButtonTapped = () => {
+        viewModel.showSearchView(true);
+    };
 
     return (
         <TouchableOpacity
-            onPress={onBackButtonTapped}
+            onPress={onSearchButtonTapped}
             style={styles.navTrailingButton}
         >
             <SimpleLineIcons
@@ -83,6 +150,11 @@ const NavTrailingItemView = () => {
 };
 
 const styles = StyleSheet.create({
+    parent: {
+        flex: 1,
+        backgroundColor: Colors.viewBackground,
+    },
+
     navMiddleItemContainer: {
         flexDirection: "column",
         backgroundColor: "white",
@@ -116,6 +188,18 @@ const styles = StyleSheet.create({
 
     navTrailingButton: {
         paddingRight: 15,
+    },
+
+    flatListContainer: {
+        paddingBottom: 40,
+    },
+
+    flatList: {
+        backgroundColor: Colors.viewBackground,
+    },
+
+    flatListItem: {
+        padding: 10,
     },
 });
 
