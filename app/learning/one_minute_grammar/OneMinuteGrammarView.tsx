@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    FlatList,
+    Modal,
+} from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { observer } from "mobx-react";
 
-import OneMinuteGrammarViewModel from "./OneMinuteGrammarViewModel";
+import viewModel from "./OneMinuteGrammarViewModel";
 import Colors from "../../consts/Colors";
-
-const viewModel = new OneMinuteGrammarViewModel();
+import OneMinuteGrammarItemView from "./OneMinuteGrammarItemView";
+import SearchView from "./OneMinuteGrammarSearchView";
 
 const OneMinuteGrammarView = ({ navigation }) => {
     useEffect(() => {
@@ -24,9 +32,48 @@ const OneMinuteGrammarView = ({ navigation }) => {
         });
     }, []);
 
+    useEffect(() => {
+        viewModel.getItems();
+    }, [viewModel.allItems]);
+
+    const ModalSearchView = observer(() => {
+        return (
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={viewModel.searchViewPresented}
+                onRequestClose={() => {
+                    viewModel.showSearchView(false);
+                }}
+            >
+                <SearchView />
+            </Modal>
+        );
+    });
+
+    const ItemList = observer(() => {
+        return (
+            <View style={styles.flatListContainer}>
+                <FlatList
+                    data={viewModel.allItems}
+                    renderItem={({ item }) => (
+                        <OneMinuteGrammarItemView
+                            item={item}
+                            expandedInitially={false}
+                        />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                    contentContainerStyle={styles.flatListItem}
+                    style={styles.flatList}
+                />
+            </View>
+        );
+    });
+
     return (
-        <View>
-            <Text>OneMinuteGrammarView</Text>
+        <View style={styles.parent}>
+            <ItemList />
+            <ModalSearchView />
         </View>
     );
 };
@@ -66,11 +113,13 @@ const NavMiddleItemView = () => {
 };
 
 const NavTrailingItemView = () => {
-    const onBackButtonTapped = () => {};
+    const onSearchButtonTapped = () => {
+        viewModel.showSearchView(true);
+    };
 
     return (
         <TouchableOpacity
-            onPress={onBackButtonTapped}
+            onPress={onSearchButtonTapped}
             style={styles.navTrailingButton}
         >
             <SimpleLineIcons
@@ -83,6 +132,11 @@ const NavTrailingItemView = () => {
 };
 
 const styles = StyleSheet.create({
+    parent: {
+        flex: 1,
+        backgroundColor: Colors.viewBackground,
+    },
+
     navMiddleItemContainer: {
         flexDirection: "column",
         backgroundColor: "white",
@@ -116,6 +170,18 @@ const styles = StyleSheet.create({
 
     navTrailingButton: {
         paddingRight: 15,
+    },
+
+    flatListContainer: {
+        paddingBottom: 40,
+    },
+
+    flatList: {
+        backgroundColor: Colors.viewBackground,
+    },
+
+    flatListItem: {
+        padding: 10,
     },
 });
 
