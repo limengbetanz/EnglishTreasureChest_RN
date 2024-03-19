@@ -9,12 +9,14 @@ import {
 } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { observer } from "mobx-react";
+import { useNavigation } from "@react-navigation/native";
 
 import viewModel from "./SceneDialoguesViewModel";
 import SearchView from "./SceneDialoguesSearchView";
 import Colors from "../../consts/Colors";
+import ViewName from "../../consts/ViewName";
 import SegmentedControl from "../../shared_views/SegmentedControl";
-import SceneDialoguesViewItemView from "./SceneDialoguesViewItemView";
+import SceneDialoguesItemView from "./SceneDialoguesItemView";
 
 const SceneDialoguesView = ({ navigation }) => {
     useEffect(() => {
@@ -69,15 +71,24 @@ const SceneDialoguesView = ({ navigation }) => {
     });
 
     const ItemList = observer(() => {
+        const navigation = useNavigation();
+
         return (
             <View style={styles.flatListContainer}>
                 <FlatList
                     data={viewModel.displayedItems}
                     renderItem={({ item }) => (
-                        <SceneDialoguesViewItemView
-                            item={item}
-                            expandedInitially={false}
-                        />
+                        <TouchableOpacity
+                            activeOpacity={1}
+                            onPress={() =>
+                                navigation.navigate(
+                                    ViewName.SceneDialoguesDetails,
+                                    { data: JSON.stringify(item) },
+                                )
+                            }
+                        >
+                            <SceneDialoguesItemView item={item} />
+                        </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item.id.toString()}
                     contentContainerStyle={styles.flatListItem}

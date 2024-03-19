@@ -14,16 +14,18 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import LearningViewModel, { TopicType } from "./LearningViewModel";
+import LearningViewModel from "./LearningViewModel";
 import type { Topic } from "./LearningViewModel";
 
 import Colors from "../consts/Colors";
+import ViewName from "../consts/ViewName";
 
 import DesynonymisationView from "./desynonymisation/DesynonymisationView";
 import MyNotebookView from "./my_notebook/MyNotebookView";
 import OneMinuteGrammarView from "./one_minute_grammar/OneMinuteGrammarView";
 import PracticalOralEnglishView from "./practical_oral_english/PracticalOralEnglishView";
 import SceneDialoguesView from "./scene_dialogues/SceneDialoguesView";
+import SceneDialoguesDetailsView from "./scene_dialogues/SceneDialoguesDetailsView";
 
 const { width } = Dimensions.get("window");
 const topicCardSize = (width - 50) / 3.0;
@@ -39,24 +41,28 @@ const LearningView = () => {
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name={TopicType.Desynonymisation}
+                name={ViewName.Desynonymisation}
                 component={DesynonymisationView}
             />
             <Stack.Screen
-                name={TopicType.MyNotebook}
+                name={ViewName.MyNotebook}
                 component={MyNotebookView}
             />
             <Stack.Screen
-                name={TopicType.OneMinuteGrammar}
+                name={ViewName.OneMinuteGrammar}
                 component={OneMinuteGrammarView}
             />
             <Stack.Screen
-                name={TopicType.PracticalOralEnglish}
+                name={ViewName.PracticalOralEnglish}
                 component={PracticalOralEnglishView}
             />
             <Stack.Screen
-                name={TopicType.SceneDialogues}
+                name={ViewName.SceneDialogues}
                 component={SceneDialoguesView}
+            />
+            <Stack.Screen
+                name={ViewName.SceneDialoguesDetails}
+                component={SceneDialoguesDetailsView}
             />
         </Stack.Navigator>
     );

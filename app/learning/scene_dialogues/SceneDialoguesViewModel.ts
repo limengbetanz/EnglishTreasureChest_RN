@@ -87,6 +87,8 @@ class SceneDialoguesViewModel {
         this.searchKeyword = "";
         this.searchedItems = [];
     }
+
+    showDialogueDetails() {}
 }
 
 const viewModel = new SceneDialoguesViewModel();

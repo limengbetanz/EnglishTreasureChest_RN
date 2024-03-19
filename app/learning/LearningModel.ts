@@ -1,13 +1,7 @@
-enum TopicType {
-    PracticalOralEnglish = "PracticalOralEnglish",
-    Desynonymisation = "Desynonymisation",
-    SceneDialogues = "SceneDialogues",
-    OneMinuteGrammar = "OneMinuteGrammar",
-    MyNotebook = "MyNotebook",
-}
+import ViewName from "../consts/ViewName";
 
 type Topic = {
-    type: TopicType;
+    type: ViewName;
     name: string;
     themeColor: string;
 };
@@ -16,27 +10,27 @@ class LearningModel {
     getAllTopics(): Topic[] {
         return [
             {
-                type: TopicType.PracticalOralEnglish,
+                type: ViewName.PracticalOralEnglish,
                 name: "实用口语",
                 themeColor: "crimson",
             },
             {
-                type: TopicType.Desynonymisation,
+                type: ViewName.Desynonymisation,
                 name: "同义词辨析",
                 themeColor: "steelblue",
             },
             {
-                type: TopicType.SceneDialogues,
+                type: ViewName.SceneDialogues,
                 name: "场景对话",
                 themeColor: "peru",
             },
             {
-                type: TopicType.OneMinuteGrammar,
+                type: ViewName.OneMinuteGrammar,
                 name: "一分钟语法",
                 themeColor: "darkcyan",
             },
             {
-                type: TopicType.MyNotebook,
+                type: ViewName.MyNotebook,
                 name: "我的笔记本",
                 themeColor: "darkorange",
             },
@@ -44,6 +38,5 @@ class LearningModel {
     }
 }
 
-export { TopicType };
 export type { Topic };
 export default LearningModel;

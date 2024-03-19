@@ -12,7 +12,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { observer } from "mobx-react";
 
 import viewModel from "./SceneDialoguesViewModel";
-import SceneDialoguesViewItemView from "./SceneDialoguesViewItemView";
+import SceneDialoguesItemView from "./SceneDialoguesItemView";
 import Colors from "../../consts/Colors";
 
 const SceneDialoguesSearchView = () => {
@@ -64,11 +64,7 @@ const SceneDialoguesSearchView = () => {
                     <FlatList
                         data={viewModel.searchedItems}
                         renderItem={({ item }) => (
-                            <SceneDialoguesViewItemView
-                                item={item}
-                                expandedInitially={true}
-                                highlightedText={viewModel.searchKeyword}
-                            />
+                            <SceneDialoguesItemView item={item} />
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         contentContainerStyle={styles.flatListItem}
