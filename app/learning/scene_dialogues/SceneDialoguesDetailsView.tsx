@@ -6,6 +6,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import viewModel from "./SceneDialoguesViewModel";
 import type { SceneDialoguesItem } from "./SceneDialoguesViewModel";
 import Colors from "../../consts/Colors";
+import ChatBubble from "../../shared_views/ChatBubble";
 
 const SceneDialoguesDetailsView = () => {
     const navigation = useNavigation();
@@ -60,7 +61,7 @@ const SceneDialoguesDetailsView = () => {
 
     return (
         <View>
-            <Text>dddddd</Text>
+            <ChatBubble content="dddd" direction="left" />
         </View>
     );
 };
